@@ -1,8 +1,8 @@
 import random
 import time as tm
 import sys
-from Resources.variables.Var import *
-from Resources.functions.Functions import *
+from Resources.Var import *
+from Resources.Functions import *
 from replit import db
 
 Clear()
