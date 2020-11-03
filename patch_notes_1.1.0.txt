@@ -1,0 +1,7 @@
+Patch notes for 1.1.0:
+
+- Bug fixes.
+
+- At the end of the program, we added how much memory it took to run the program
+
+- Using functions to speed up process
