@@ -1,18 +1,23 @@
 import random
 import time as tm
 import sys
+import os
 from Resources.Var import *
 from Resources.Functions import *
 from replit import db
+import psutil
 
 Clear()
+process = psutil.Process(os.getpid())
+memory_used = process.memory_info().rss/1000000
+
 name = str(input("Hello, What is your first and last name?\n"))
 
 if name in db:
   Clear()
   print("Good to see you again! It looks like you have used this before!")
   tm.sleep(3)
-if name not in db:
+elif name not in db:
   Clear()
   print("I see this is your first time using this software. Have fun!  Just a disclaimer, your name will be added to my repl.it database, but we will never share anyone's name!")
   tm.sleep(5)
@@ -20,7 +25,7 @@ if name not in db:
   new_user = db[name]
 
 Clear()
-print(yellow, "Hello! Thank you for using our Beta version of the Distance Conversion Calculator!  Please report any bugs or fixes that should be made to me.  Created by me, @ThePythonFury, and my helper, Mr. Baumgardner.\n\n", red, "Version 1.0.0")
+print(yellow, "Hello! Thank you for using our Beta version of the Distance Conversion Calculator!  Please report any bugs or fixes that should be made to me.  Created by me, @ThePythonFury, and my helper, Mr. Baumgardner.\n\n", red, "Version 1.1.0")
 tm.sleep(5)
 Clear()
 
@@ -37,545 +42,232 @@ def Main():
     print(cyan, 'The available units include miles, kilometers, meters, millimeters, centimeters, inches, yards, and feet.\n\n')
     whattoconvert = input('What unit would you like to convert? PLEASE ANSWER WITH NO CAPITAL LETTERS!:\n')
     if whattoconvert == 'miles':
-    
       print(blue)
       milesto = input('Ok. what would you like to convert miles to?  PLEASE ANSWER WITH NO CAPITAL LETTERS!:\n')
       if milesto == 'kilometers':
-        Clear()
-        print(red)
-        miles = input('Ok,  How many miles do you want to convert?\n')
-        milestokilometers = (float(miles)*milestokilo)
-        print(magenta)
-        print(yellow, 'Converting......')    
-        tm.sleep(2)
-        print('\n\n')
-        print(red, 'your outcome is', milestokilometers, 'kilometers!')
-      if milesto == 'meters':
-        Clear()
-        print(red)
-        miles = input('Ok.  How many miles would you like to convert?:\n')
-        milestometers = (float(miles)*milestometer)
-        print(yellow)
-        print(magenta, "Converting...")
-        tm.sleep(2)
-        print('\n\n')
-        print(yellow, 'Your outcome is ', milestometers, 'meters!')
-      if milesto == 'yards':
-        Clear()
-        print(red)
-        miles = input('Ok.  How many miles would you like to convert?:\n')
-        milestoyards = (float(miles)*milestoyard)
-        print(magenta)
-        print('Converting.....')
-        tm.sleep(2)
-        print('\n\n')
-        print(blue, 'Your outcome is ', milestoyards, 'yards')
-      if milesto == 'feet':
-        Clear()
-        print(magenta)
-        miles = input('Ok.  How many miles would you like to convert?:\n')
-        milestofeet = (float(miles)*milestofoot)
-        print(yellow)
-        print('Converting...')
-        tm.sleep(1.5)
-        print('\n\n')
-        print(blue, 'Your outcome is ', milestofeet, 'feet!')
-      if milesto == 'millimeters':
-        Clear()
-        print(red)
-        miles = input('Ok.  How many miles would you like to convert?:\n')
-        milestomms = (float(miles)*milestomm)
-        print(magenta)
-        print('Converting....')
-        tm.sleep(1)
-        print('\n\n')
-        print(yellow, 'Your outcome is ', milestomms, 'millimeters!')
-      if milesto == 'inches':
-        Clear()
-        print(blue)
-        miles = input('Ok.  How many miles would you like to convert?:\n')
-        milestoinches = (float(miles)*milestoinch)
-        print(magenta)
-        print('Converting.......')
-        tm.sleep(1)
-        print('\n\n')
-        print(red, "Your outcome is", milestoinches, 'inches!')
-      if milesto == 'centimeters':
-        Clear()
-        print(red)
-        miles = input('Ok.  How many miles would you like to convert?:\n')
-        milestocms = (float(miles)*milestocm)
-        print(blue)
-        print('Converting...')
-        tm.sleep(2)
-        print('\n\n')
-        print(yellow, 'Your outcome is', milestocms, 'centimeters!')
-    if whattoconvert == 'kilometers':
-    
+        main_func("miles", milestokilo, "kilometers")
+      elif milesto == 'meters':
+        main_func("miles", milestometer, "meters")
+      elif milesto == 'yards':
+        main_func("miles", milestoyard, "yards")
+      elif milesto == 'feet':
+        main_func("miles", milestofoot, "feet")
+      elif milesto == 'millimeters':
+        main_func("miles", milestomm, "millimeters")
+      elif milesto == 'inches':
+        main_func("miles", milestoinch, "inches")
+      elif milesto == 'centimeters':
+        main_func("miles", milestocm, "centimeters")
+    elif whattoconvert == 'kilometers':
       print(blue)
       kiloto = input('Ok. what would you like to convert kilometers to?  PLEASE ANSWER WITH NO CAPITAL LETTERS!:\n')
       if kiloto == 'miles':
-        Clear()
-        print(yellow)
-        kilo = input('Ok.  How many kilometers would you like to convert?:\n')
-        kilotomiles = (float(kilo)*kilotomile)
-        print(blue)
-        print('Converting.......')
-        tm.sleep(1)
-        print(red)
-        print('\n\n Your outcome is', kilotomiles, 'miles!')
-      if kiloto == 'meters':
-        Clear()
-        print(magenta)
-        kilo = input("Ok. How many kilometers do you want to convert?:\n")
-        kilotometers = (float(kilo)*kilotometer)
-        print(red)
-        print('Converting.....')
-        tm.sleep(1.5)
-        print(yellow)
-        print('\n\n Your outcome is', kilotometers, "meters!")
-      if kiloto == 'yards':
-        Clear()
-        print(red)
-        kilo = input('Ok, how many kilometers would you like to convert?\n')
-        kilotoyards = (float(kilo)*kilotoyard)
-        print(yellow)
-        print('Converting...')
-        tm.sleep(1)
-        print(blue)
-        print('\n\n Your outcome is', kilotoyards, 'yards!')
-      if kiloto == 'feet':
-        Clear()
-        print(magenta)
-        kilo = input('Ok. How many kilometers do you want to convert?:\n\n')
-        kilotofeet = (float(kilo)*kilotofoot)
-        print(red)
-        print('Converting....')
-        tm.sleep(0.5)
-        print(yellow)
-        print('\n\n Your outcome is', kilotofeet, 'feet!')
-      if kiloto == 'millimeters':
-        Clear()
-        print(blue)
-        kilo = input('Ok.  How many kilometers would you like to convert?:\n\n')
-        kilotomms = (float(kilo)*kilotomm)
-        print(magenta)
-        print('Converting......')
-        tm.sleep(0.749)
-        print(green)
-        print('\n\n Your outcome is', kilotomms, 'feet!')
-      if kiloto == 'inches':
-        Clear()
-        print(yellow)
-        kilo = input('Ok.  How many kilometers would you like to convert?:\n\n')
-        kilotoinches = (float(kilo)*kilotoinch)
-        print(green)
-        print('Converting...')
-        tm.sleep(0.8)
-        print("Your outcome is", kilotoinches, "inches!")
-      if kiloto == 'centimeters':
-        Clear()
-        print(red)
-        kilo = input('Ok.  How many kilometers would you like to convert?:\n\n')
-        kilotocms = (float(kilo)*kilotocm)
-        print(yellow)
-        print('Converting.....')
-        tm.sleep(0.8)
-        print('Your outcome is', kilotocms, "centimeters!")
-    if whattoconvert == "meters":
+        main_func("kilometers", kilotomile, "miles")
+      elif kiloto == 'meters':
+        main_func("kilometers", kilotometer, "meters")
+      elif kiloto == 'yards':
+        main_func("kilometers", kilotoyard, "yards")
+      elif kiloto == 'feet':
+        main_func("kilometers", kilotofoot, "feet")
+      elif kiloto == 'millimeters':
+        main_func("kilometers", kilotomm, "millimeters")
+      elif kiloto == 'inches':
+        main_func("kilometers", kilotoinch, "inches")
+      elif kiloto == 'centimeters':
+        main_func("kilometers", kilotocm, "centimeters")
+    elif whattoconvert == "km":
+      print(blue)
+      kiloto = input('Ok. what would you like to convert kilometers to?  PLEASE ANSWER WITH NO CAPITAL LETTERS!:\n')
+      if kiloto == 'miles':
+        main_func("kilometers", kilotomile, "miles")
+      elif kiloto == 'meters':
+        main_func("kilometers", kilotometer, "meters")
+      elif kiloto == 'yards':
+        main_func("kilometers", kilotoyard, "yards")
+      elif kiloto == 'feet':
+        main_func("kilometers", kilotofoot, "feet")
+      elif kiloto == 'millimeters':
+        main_func("kilometers", kilotomm, "millimeters")
+      elif kiloto == 'inches':
+        main_func("kilometers", kilotoinch, "inches")
+      elif kiloto == 'centimeters':
+        main_func("kilometers", kilotocm, "centimeters")
+    elif whattoconvert == "meters":
       print(cyan)
       meterto = input('Ok. what would you like to convert meters to?  PLEASE ANSWER WITH NO CAPITAL LETTERS!:\n')
       if meterto == 'miles':
-        Clear()
-        print(yellow)
-        meter = input(white, "Ok.  How many meters would you like to convert?:\n\n ")
-        meterstomile = (float(meter)*metertomile)
-        print(red)
-        print("Converting...")
-        tm.sleep(0.2)
-        print("Your outcome is", meterstomile, "meters!")
-      if meterto == "kilometers":
-        Clear()
-        print(red)
-        meter = input(yellow, 'Ok, how many meter would you like to convert?:\n')
-        meterstokilo = (float(meter)*metertokilo)
-        print(white, "Converting....")
-        tm.sleep(0.1)
-        print("Your outcome is", meterstokilo, "meters!")
-      if meterto == "millimeters" or "mm":
-        Clear()
-        print(magenta)
-        meter = input("Ok.  How many meters would you like to convert?:\n")
-        meterstomm = (float(meter)*metertomm)
-        print(white, "Converting....")
-        tm.sleep(0.5)
-        print("Your outcome is", meterstomm, "meters!")
-      if meterto == "centimeters" or "cm" or "centimeter":
-        Clear()
-        print(cyan)
-        meter = input("Ok.  How many meters would you like to convert?:\n")
-        meterstocm = (float(meter)*metertocm)
-        print(blue, "Converting...")
-        tm.sleep(1)
-        print(red, "Your outcome is", meterstocm, "meters!")
-      if meterto == "inch" or "inches":
-        Clear()
-        print(yellow)
-        meter = input("Ok.  How many meters would you like to convert?:\n")
-        meterstoinch = (float(meter)*metertoinch)
-        print(yellow, "Converting...")
-        tm.sleep(0.745)
-        print("\n\nYour outcome is", meterstoinch, "meters!")
-      if meterto == "yard" or "yards":
-        Clear()
-        print(yellow)
-        meter = input("Ok.  How many meters would you like to convert?:\n")
-        meterstoyard = (float(meter)*metertoyard)
-        print(yellow, "Converting...")
-        tm.sleep(0.745)
-        print("\n\nYour outcome is", meterstoyard, "meters!")
-      if meterto == "feet" or "ft":
-        Clear()
-        print(yellow)
-        meter = input("Ok.  How many meters would you like to convert?:\n")
-        meterstofeet = (float(meter)*metertofoot)
-        print(yellow, "Converting...")
-        tm.sleep(0.745)
-        print("\n\nYour outcome is", meterstofeet, "meters!")
-    if whattoconvert == "millimeters":
+        main_func("meters", metertomile, "miles")
+      elif meterto == "kilometers":
+        main_func("meters", metertokilo, "kilometers")
+      elif meterto == "millimeters":
+        main_func("meters", metertomm, "millimeters")
+      elif meterto == "mm":
+        main_func("meters", metertomm, "millimeters")
+      elif meterto == "centimeters": 
+        main_func("meters", metertocm, "centimeters")
+      elif meterto == "cm":
+        main_func("meters", metertocm, "centimeters")
+      elif meterto == "inches":
+        main_func("meters", metertocm, "inches")
+      elif meterto == "yards":
+        main_func("meters", metertoyard, "yards")
+      elif meterto == "feet" or "ft":
+        main_func("meters", metertofoot, "feet")
+    elif whattoconvert == "millimeters":
       print(red)
       mmto = input('Ok. what would you like to convert millimeters to?  PLEASE ANSWER WITH NO CAPITAL LETTERS!:\n')
       if mmto == "miles":
-        Clear()
-        print(yellow)
-        mm = input(white, "Ok.  How many millimeters would you like to convert?:\n\n ")
-        mmstomile = (float(mm)*mmtomile)
-        print(red)
-        print("Converting...")
-        tm.sleep(0.2)
-        print("Your outcome is", mmstomile, "millimeters!")
-      if mmto == "kilometers" or "km":
-        Clear()
-        print(yellow)
-        mm = input(white, "Ok.  How many millimeters would you like to convert?:\n\n ")
-        mmstokilo = (float(mm)*mmtokilo)
-        print(red)
-        print("Converting...")
-        tm.sleep(0.2)
-        print("Your outcome is", mmstokilo, "millimeters!")
-      if mmto == "meters":
-        Clear()
-        print(yellow)
-        mm = input(white, "Ok.  How many millimeters would you like to convert?:\n\n ")
-        mmstometer = (float(mm)*mmtometer)
-        print(red)
-        print("Converting...")
-        tm.sleep(0.2)
-        print("Your outcome is", mmstometer, "millimeters!")
-      if mmto == "centimeters" or "cm":
-        Clear()
-        print(yellow)
-        mm = input(white, "Ok.  How many millimeters would you like to convert?:\n\n ")
-        mmstocm = (float(mm)*mmtocm)
-        print(red)
-        print("Converting...")
-        tm.sleep(0.2)
-        print("Your outcome is", mmstocm, "millimeters!")
-      if mmto == "inches" or "inch":
-        Clear()
-        print(yellow)
-        mm = input(white, "Ok.  How many millimeters would you like to convert?:\n\n ")
-        mmstoinch = (float(mm)*mmtoinch)
-        print(red)
-        print("Converting...")
-        tm.sleep(0.2)
-        print("Your outcome is", mmstoinch, "millimeters!")
-      if mmto == "yard" or "yards":
-        Clear()
-        print(yellow)
-        mm = input(white, "Ok.  How many millimeters would you like to convert?:\n\n ")
-        mmstoyard = (float(mm)*mmtoyard)
-        print(red)
-        print("Converting...")
-        tm.sleep(0.2)
-        print("Your outcome is", mmstoyard, "millimeters!")
-      if mmto == "foot" or "feet":
-        Clear()
-        print(yellow)
-        mm = input(white, "Ok.  How many millimeters would you like to convert?:\n\n ")
-        mmstofoot = (float(mm)*mmtofoot)
-        print(red)
-        print("Converting...")
-        tm.sleep(0.2)
-        print("Your outcome is", mmstofoot, "millimeters!")
-    if whattoconvert == "centimeter" or "cm" or "centimeters":
+        main_func("millimeters", mmtomile, "miles")
+      elif mmto == "kilometers":
+        main_func("millimeters", mmtokilo, "kilometers")
+      elif mmto == "km":
+        main_func("millimeters", mmtokilo, "kilometers")
+      elif mmto == "meters":
+        main_func("millimeters", mmtometer, "meters")
+      elif mmto == "centimeters":
+        main_func("millimeters", mmtocm, "centimeters")
+      elif mmto == "cm":
+        main_func("millimeters", mmtocm, "centimeters")
+      elif mmto == "inches":
+        main_func("millimeters", mmtoinch, "inches")
+      elif mmto == "yard" or "yards":
+        main_func("millimeters", mmtoyard, "yards")
+      elif mmto == "foot" or "feet":
+        main_func("millimeters", mmtofoot, "feet")
+    elif whattoconvert == "mm":
+      print(red)
+      mmto = input('Ok. what would you like to convert millimeters to?  PLEASE ANSWER WITH NO CAPITAL LETTERS!:\n')
+      if mmto == "miles":
+        main_func("millimeters", mmtomile, "miles")
+      elif mmto == "kilometers":
+        main_func("millimeters", mmtokilo, "kilometers")
+      elif mmto == "km":
+        main_func("millimeters", mmtokilo, "kilometers")
+      elif mmto == "meters":
+        main_func("millimeters", mmtometer, "meters")
+      elif mmto == "centimeters":
+        main_func("millimeters", mmtocm, "centimeters")
+      elif mmto == "cm":
+        main_func("millimeters", mmtocm, "centimeters")
+      elif mmto == "inches":
+        main_func("millimeters", mmtoinch, "inches")
+      elif mmto == "yard" or "yards":
+        main_func("millimeters", mmtoyard, "yards")
+      elif mmto == "foot" or "feet":
+        main_func("millimeters", mmtofoot, "feet")
+    elif whattoconvert == "cm":
       print(red)
       cmto = input('Ok. what would you like to convert centimeters to?  PLEASE ANSWER WITH NO CAPITAL LETTERS!:\n')
-      if cmto == "miles" or "mile":
-        Clear()
-        print(yellow)
-        cm = input(white, "Ok.  How many centimeters would you like to convert?:\n\n ")
-        cmstomile = (float(cm)*cmtomile)
-        print(red)
-        print("Converting...")
-        tm.sleep(0.2)
-        print("Your outcome is", cmstomile, "centimeters!")
-      if cmto == "kilometers" or "kilometer" or "km":
-        Clear()
-        print(yellow)
-        cm = input(white, "Ok.  How many centimeters would you like to convert?:\n\n ")
-        cmstokm = (float(cm)*cmtokilo)
-        print(red)
-        print("Converting...")
-        tm.sleep(0.2)
-        print("Your outcome is", cmstokm, "centimeters!")
-      if cmto == "meter" or "meters":
-        Clear()
-        print(yellow)
-        cm = input(white, "Ok.  How many centimeters would you like to convert?:\n\n ")
-        cmstometer = (float(cm)*cmtometer)
-        print(red)
-        print("Converting...")
-        tm.sleep(0.2)
-        print("Your outcome is", cmstometer, "centimeters!")
-      if cmto == "millimeters" or "millimeter" or "mm":
-        Clear()
-        print(yellow)
-        cm = input(white, "Ok.  How many centimeters would you like to convert?:\n\n ")
-        cmstomm = (float(cm)*cmtomm)
-        print(red)
-        print("Converting...")
-        tm.sleep(0.2)
-        print("Your outcome is", cmstomm, "centimeters!")
-      if cmto == "inch" or "inches":
-        Clear()
-        print(yellow)
-        cm = input(white, "Ok.  How many centimeters would you like to convert?:\n\n ")
-        cmstoinch = (float(cm)*cmtoinch)
-        print(red)
-        print("Converting...")
-        tm.sleep(0.2)
-        print("Your outcome is", cmstoinch, "centimeters!")
-      if cmto == "yard" or "yards":
-        Clear()
-        print(yellow)
-        cm = input(white, "Ok.  How many centimeters would you like to convert?:\n\n ")
-        cmstoyard = (float(cm)*cmtoyard)
-        print(red)
-        print("Converting...")
-        tm.sleep(0.2)
-        print("Your outcome is", cmstoyard, "centimeters!")
-      if cmto == "foot" or "feet":
-        Clear()
-        print(yellow)
-        cm = input(white, "Ok.  How many centimeters would you like to convert?:\n\n ")
-        cmstofoot = (float(cm)*cmtofeet)
-        print(red)
-        print("Converting...")
-        tm.sleep(0.2)
-        print("Your outcome is", cmstofoot, "centimeters!")
-    if whattoconvert == "inch" or "inches":
-      print(yellow)
-      inchto = input('Ok. what would you like to convert inches to?  PLEASE ANSWER WITH NO CAPITAL LETTERS!:\n')
-      if inchto == "mile" or "miles":
-        Clear()
-        print(yellow)
-        inch = input(white, "Ok.  How many inches would you like to convert?:\n\n ")
-        inchestomile = (float(inch)*inchtomile)
-        print(red)
-        print("Converting...")
-        tm.sleep(0.2)
-        print("Your outcome is", inchestomile, "inches!")
-      if inchto == "km" or "kilometer" or "kilometers":
-        Clear()
-        print(yellow)
-        inch = input(white, "Ok.  How many inches would you like to convert?:\n\n ")
-        inchestokilo = (float(inch)*inchtokilo)
-        print(red)
-        print("Converting...")
-        tm.sleep(0.2)
-        print("Your outcome is", inchestokilo, "inches!")
-      if inchto == "meter" or "meters":
-        Clear()
-        print(yellow)
-        inch = input(white, "Ok.  How many inches would you like to convert?:\n\n ")
-        inchestometer = (float(inch)*inchtometer)
-        print(red)
-        print("Converting...")
-        tm.sleep(0.2)
-        print("Your outcome is", inchestometer,"inches!")
-      if inchto == "mm" or "millimeter" or "millimeters":
-        Clear()
-        print(yellow)
-        inch = input(white, "Ok.  How many inches would you like to convert?:\n\n ")
-        inchestomm = (float(inch)*inchtomm)
-        print(red)
-        print("Converting...")
-        tm.sleep(0.2)
-        print("Your outcome is", inchestomm, "inches!")
-      if inchto == "cm" or "centimeter" or "centimeters":
-        Clear()
-        print(yellow)
-        inch = input(white, "Ok.  How many inches would you like to convert?:\n\n ")
-        inchestocm = (float(inch)*inchtocm)
-        print(red)
-        print("Converting...")
-        tm.sleep(0.2)
-        print("Your outcome is", inchestocm, "inches!")
-      if inchto == "yard" or "yards":
-        Clear()
-        print(yellow)
-        inch = input(white, "Ok.  How many inches would you like to convert?:\n\n ")
-        inchestoyard = (float(inch)*inchtoyard)
-        print(red)
-        print("Converting...")
-        tm.sleep(0.2)
-        print("Your outcome is", inchestoyard, "inches!")
-      if inchto == "foot" or "feet":
-        Clear()
-        print(yellow)
-        inch = input(white, "Ok.  How many inches would you like to convert?:\n\n ")
-        inchestofoot = (float(inch)*inchtofoot)
-        print(red)
-        print("Converting...")
-        tm.sleep(0.2)
-        print("Your outcome is", inchestofoot, "inches!")
-    if whattoconvert == "yard" or "yards":
+      if cmto == "miles":
+        main_func("centimeters", cmtomile, "miles")
+      elif cmto == "kilometers":
+        main_func("centimeters", cmtokm, "kilometers")
+      elif cmto == "km":
+        main_func("centimeters", cmtokilo, "kilometers")
+      elif cmto == "meters":
+        main_func("centimeters", cmtometer, "meters")
+      elif cmto == "millimeters":
+        main_func("centimeters", cmtomm, "millimeters")
+      elif cmto == "mm":
+        main_func("centimeters", cmtomm, "millimeters")
+      elif cmto == "inches":
+        main_func("centimeters", cmtoinch, "inches")
+      elif cmto == "yards":
+        main_func("centimeters", cmtoyard, "yards")
+      elif cmto == "feet":
+        main_func("centimeters", cmtofoot, "feet")
+    elif whattoconvert == "centimeters":
+      print(red)
+      cmto = input('Ok. what would you like to convert centimeters to?  PLEASE ANSWER WITH NO CAPITAL LETTERS!:\n')
+      if cmto == "miles":
+        main_func("centimeters", cmtomile, "miles")
+      elif cmto == "kilometers":
+        main_func("centimeters", cmtokm, "kilometers")
+      elif cmto == "km":
+        main_func("centimeters", cmtokilo, "kilometers")
+      elif cmto == "meters":
+        main_func("centimeters", cmtometer, "meters")
+      elif cmto == "millimeters":
+        main_func("centimeters", cmtomm, "millimeters")
+      elif cmto == "mm":
+        main_func("centimeters", cmtomm, "millimeters")
+      elif cmto == "inches":
+        main_func("centimeters", cmtoinch, "inches")
+      elif cmto == "yards":
+        main_func("centimeters", cmtoyard, "yards")
+      elif cmto == "feet":
+        main_func("centimeters", cmtofoot, "feet")
+    elif whattoconvert == "inches":
+      inchto = input("Ok. What would you like to convert inches to?  PLEASE ANWER WITH NO CAPITAL LETTERS!:")
+      if inchto == "miles":
+        main_func("inches", inchtomile, "miles")
+      elif inchto == "kilometers":
+        main_func("inches", inchtokilo, "kilometers")
+      elif inchto == "km":
+        main_func("inches", inchtokilo, "kilometers")
+      elif inchto == "meters":
+        main_func("inches", inchtometer, "meters")
+      elif inchto == "millimeters":
+        main_func("inches", inchtomm, "millimeters")
+      elif inchto == "mm":
+        main_func("inches", inchtomm, "millimeters")
+      elif inchto == "centimeters":
+        main_func("inches", inchtocm, "centimeters")
+      elif inchto == "cm":
+        main_func("inches", inchtocm, "centimeters")
+      elif inchto == "yards":
+        main_func("inches", inchtoyard, "yards")
+      elif inchto == "feet":
+        main_func("inches", inchtofoot, "foot")
+    elif whattoconvert == "yards":
       print(green)
       yto = input('Ok. what would you like to convert yards to?  PLEASE ANSWER WITH NO CAPITAL LETTERS!:\n')
-      if yto == "mile" or "miles":
-        Clear()
-        print(yellow)
-        yard = input(white, "Ok.  How many yards would you like to convert?:\n\n ")
-        yardstomile = (float(yard)*yardtomile)
-        print(red)
-        print("Converting...")
-        tm.sleep(0.2)
-        print("Your outcome is", yardstomile, "yards!")
-      if yto == "km" or "kilometers" or "kilometer":
-        Clear()
-        print(yellow)
-        yard = input(white, "Ok.  How many yards would you like to convert?:\n\n ")
-        yardstokilo = (float(yard)*yardtokilo)
-        print(red)
-        print("Converting...")
-        tm.sleep(0.2)
-        print("Your outcome is", yardstokilo, "yards!")
-      if yto == "meter" or "meters":
-        Clear()
-        print(yellow)
-        yard = input(white, "Ok.  How many yards would you like to convert?:\n\n ")
-        yardstometer = (float(yard)*yardtometer)
-        print(red)
-        print("Converting...")
-        tm.sleep(0.2)
-        print("Your outcome is", yardstometer, "yards!")
-      if yto == "mm" or "millimeter" or "millimeters":
-        Clear()
-        print(yellow)
-        yard = input(white, "Ok.  How many yards would you like to convert?:\n\n ")
-        yardstomm = (float(yard)*yardtomm)
-        print(red)
-        print("Converting...")
-        tm.sleep(0.2)
-        print("Your outcome is", yardstomm, "yards!")
-      if yto == "cm" or "centimeters" or "centimeter":
-        Clear()
-        print(yellow)
-        yard = input(white, "Ok.  How many yards would you like to convert?:\n\n ")
-        yardstocm = (float(yard)*yardtocm)
-        print(red)
-        print("Converting...")
-        tm.sleep(0.2)
-        print("Your outcome is", yardstocm, "yards!")
-      if yto == "inch" or "inches":
-        Clear()
-        print(yellow)
-        yard = input(white, "Ok.  How many yards would you like to convert?:\n\n ")
-        yardstoinch = (float(yard)*yardtoinch)
-        print(red)
-        print("Converting...")
-        tm.sleep(0.2)
-        print("Your outcome is", yardstoinch, "yards!")
-      if yto == "foot" or "feet":
-        Clear()
-        print(yellow)
-        yard = input(white, "Ok.  How many yards would you like to convert?:\n\n ")
-        yardstofoot = (float(yard)*yardtofoot)
-        print(red)
-        print("Converting...")
-        tm.sleep(0.2)
-        print("Your outcome is", yardstofoot, "yards!")
-    if whattoconvert == "foot" or "feet":
+      if yto == "miles":
+        main_func("yards", yardtomile, "miles")
+      elif yto == "kilometers":
+        main_func("yards", yardtokilo, "kilometers")
+      elif yto == "km":
+        main_func("yards", yardtokilo, "kilometers")
+      elif yto == "meter" or "meters":
+        main_func("yards", yardtometer, "meters")
+      elif yto == "millimeters":
+        main_func("yards", yardtomm, "mm")
+      elif yto == "mm":
+        main_func("yards", yardtomm, "mm")
+      elif yto == "centimeters":
+        main_func("yards", yardtocm, "cm")
+      elif yto == "cm":
+        main_func("yards", yardtocm, "cm")
+      elif yto == "inches":
+        main_func("yards", yardtoinch, "inches")
+      elif yto == "feet":
+        main_func("yards", yardtofoot, "feet")
+    elif whattoconvert == "foot" or "feet":
       print(magenta)
       ftto = input('Ok. what would you like to convert inches to?  PLEASE ANSWER WITH NO CAPITAL LETTERS!:\n')
-      if ftto == "miles" or "mile":
-        Clear()
-        print(yellow)
-        foot = input(white, "Ok.  How many feet would you like to convert?:\n\n ")
-        feetstomile = (float(foot)*feettomile)
-        print(red)
-        print("Converting...")
-        tm.sleep(0.2)
-        print("Your outcome is", feetstomile, "feet!")
-      if ftto == "km" or "kilometers" or "kilometer":
-        Clear()
-        print(yellow)
-        foot = input(white, "Ok.  How many feet would you like to convert?:\n\n ")
-        feetstokilo = (float(foot)*feettokilo)
-        print(red)
-        print("Converting...")
-        tm.sleep(0.2)
-        print("Your outcome is", feetstokilo, "feet!")
-      if ftto == "meter" or "meters":
-        Clear()
-        print(yellow)
-        foot = input(white, "Ok.  How many feet would you like to convert?:\n\n ")
-        feetstometer = (float(foot)*feettometer)
-        print(red)
-        print("Converting...")
-        tm.sleep(0.2)
-        print("Your outcome is", feetstometers, "feet!")
-      if ftto == "mm" or "millimeters" or "millimeter":
-        Clear()
-        print(yellow)
-        foot = input(white, "Ok.  How many feet would you like to convert?:\n\n ")
-        feetstomm = (float(foot)*feettomm)
-        print(red)
-        print("Converting...")
-        tm.sleep(0.2)
-        print("Your outcome is", feetstomm, "feet!")
-      if ftto == "cm" or "centimeter" or "centimeters":
-        Clear()
-        print(yellow)
-        foot = input(white, "Ok.  How many feet would you like to convert?:\n\n ")
-        feetstocm = (float(foot)*feettocm)
-        print(red)
-        print("Converting...")
-        tm.sleep(0.2)
-        print("Your outcome is", feetstocm, "feet!")
-      if ftto == "inches" or "inch":
-        Clear()
-        print(yellow)
-        foot = input(white, "Ok.  How many feet would you like to convert?:\n\n ")
-        feetstoinch = (float(foot)*feettoinch)
-        print(red)
-        print("Converting...")
-        tm.sleep(0.2)
-        print("Your outcome is", feetstoinch, "feet!")
-      if ftto == "yard" or "yards":
-        Clear()
-        print(yellow)
-        foot = input(white, "Ok.  How many feet would you like to convert?:\n\n ")
-        feetstoyard = (float(foot)*feettoyard)
-        print(red)
-        print("Converting...")
-        tm.sleep(0.2)
-        print("Your outcome is", feetstoyard, "feet!")
+      if ftto == "miles":
+        main_func("feet", feettomile, "miles")
+      elif ftto == "km":
+        main_func("feet", feettokilo, "kilometers")
+      elif ftto == "kilometers":
+        main_func("feet", feettokilo, "kilometers")
+      elif ftto == "meter" or "meters":
+        main_func("feet", feettometer, "meters")
+      elif ftto == "mm":
+        main_func("feet", feettomm, "millimeters")
+      elif ftto == "millimeters":
+        main_func("feet", feettomm, "millimeters")
+      elif ftto == "cm":
+        main_func("feet", feettocm, "centimeters")
+      elif ftto == "centimeters":
+        main_func("feet", feettocm, "centimeters")
+      elif ftto == "inches":
+        main_func("feet", feettoinch, "inches")
+      elif ftto == "yard" or "yards":
+        main_func("feet", feettoyard, "yards")
     else:
-      print(red, "Please put a valid unit.")
+      print(red, "Please put a valid input.")
       tm.sleep(3)
-      Clear()
       conversionprocess()
  
 
@@ -602,16 +294,20 @@ def Main():
     Clear()
     Main()
   if Again == 'N':
+    Clear()
     print('Ok, See you later!')
     tm.sleep(2)
+    Clear()
+    rounded = round(memory_used)
+    print(int(rounded) + " kilobytes were used to run this project!")
     sys.exit()
   if Again == 'n':
+    Clear()
     print('Ok, See you later!')
     tm.sleep(2)
+    Clear()
+    rounded = round(memory_used)
+    print(str(rounded) + " kilobytes were used to run this program!")
     sys.exit()
-    
-
-
-
 
 Main()
