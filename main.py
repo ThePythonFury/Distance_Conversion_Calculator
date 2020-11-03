@@ -4,25 +4,11 @@ import sys
 import os
 from Resources.Var import *
 from Resources.Functions import *
-from replit import db
 import psutil
 
 Clear()
 process = psutil.Process(os.getpid())
 memory_used = process.memory_info().rss/1000000
-
-name = str(input("Hello, What is your first and last name?\n"))
-
-if name in db:
-  Clear()
-  print("Good to see you again! It looks like you have used this before!")
-  tm.sleep(3)
-elif name not in db:
-  Clear()
-  print("I see this is your first time using this software. Have fun!  Just a disclaimer, your name will be added to my repl.it database, but we will never share anyone's name!")
-  tm.sleep(5)
-  db[name] = name
-  new_user = db[name]
 
 Clear()
 print(yellow, "Hello! Thank you for using our Beta version of the Distance Conversion Calculator!  Please report any bugs or fixes that should be made to me.  Created by me, @ThePythonFury, and my helper, Mr. Baumgardner.\n\n", red, "Version 1.1.0")
